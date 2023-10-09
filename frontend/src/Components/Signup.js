@@ -37,24 +37,27 @@ const Signup = (props, { selectedGender }) => {
       password,
       Rpassword,
     } = credentials;
-    const response = await fetch(`http://localhost:5000/api/auth/signup`, {
-      method: "POST",
+    const response = await fetch(
+      `https://user-backend-4na6.onrender.com/api/auth/signup`,
+      {
+        method: "POST",
 
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        phone,
-        gender,
-        city,
-        state,
-        howDidYouHear,
-        password,
-        Rpassword,
-      }),
-    });
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          gender,
+          city,
+          state,
+          howDidYouHear,
+          password,
+          Rpassword,
+        }),
+      }
+    );
     const json = await response.json();
     console.log(json);
     if (json.success) {
