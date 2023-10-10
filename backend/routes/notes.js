@@ -114,7 +114,7 @@ router.get("/search", async (req, res) => {
   const searchTerm = req.query.q;
 
   try {
-    const results = await Note.findOne({
+    const results = await Note.find({
       $or: [
         { userName: { $regex: searchTerm, $options: "i" } },
 

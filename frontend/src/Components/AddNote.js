@@ -11,7 +11,7 @@ const AddNote = (props) => {
   });
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(null);
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = async () => {
     try {
@@ -112,7 +112,7 @@ const AddNote = (props) => {
           </button>
         </form>
         {/* Display search results */}
-        {searchResults && (
+        {/* {searchResults && (
           <div>
             <h3>Search Result</h3>
             <p>
@@ -125,7 +125,23 @@ const AddNote = (props) => {
               <b>Phone Number:</b> {searchResults.phoneNumber}
             </p>
           </div>
-        )}
+        )} */}
+        {searchResults.map((e, ind) => (
+          <ul key={ind}>
+            <li>
+              <b>User Name:</b>
+              {e.userName}
+            </li>
+            <li>
+              <b>Email:ID:</b>
+              {e.emailAddress}
+            </li>
+            <li>
+              <b>Contact No:</b>
+              {e.phoneNumber}
+            </li>
+          </ul>
+        ))}
       </div>
     </>
   );
