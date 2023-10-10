@@ -2,14 +2,18 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 const mongoose = require("mongoose");
+// const bodyParser = require("body-parser");
 
 const app = express();
 const port = process.env.port || 5000;
 
+// app.use(bodyParser.json({ limit: "50mb" }));
+// app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use(cors());
 app.use(express.json());
 
 //--------------Available Routes----------------------
+
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/notes", require("./routes/notes"));
 

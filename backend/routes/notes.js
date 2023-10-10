@@ -3,6 +3,13 @@ const router = express.Router();
 const Note = require("../models/Note");
 const fetchuser = require("../middleware/fetchuser");
 const { body, validationResult } = require("express-validator");
+const multer = require("multer");
+
+// const { storeFile } = require("../middleware/storeFile");
+
+// const storage = multer.memoryStorage();
+// const upload = multer({ storage });
+
 //---------ROUTE 1 :----------GET ALL THE NOTES USING 'GET METHOD' "/api/notes/fetchallnotes". login requires
 router.get("/fetchallnotes", fetchuser, async (req, res) => {
   try {
@@ -18,6 +25,7 @@ router.get("/fetchallnotes", fetchuser, async (req, res) => {
 router.post(
   "/addnote",
   fetchuser,
+  // upload.single("image"),
   [
     body("userName", "Please enater your Name").isLength({ min: 3 }),
     body("emailAddress", "Please enter a valid email address").isEmail(),
@@ -49,6 +57,55 @@ router.post(
     }
   }
 );
+
+// router.post(
+//   "/addnote",
+//   fetchuser,
+//   upload.single("image"),
+//   [
+//     body("userName", "Please enter your Name").isLength({ min: 3 }),
+//     body("emailAddress", "Please enter a valid email address").isEmail(),
+//     body("phoneNumber", "Please enter a valid phone number").isLength({
+//       min: 10,
+//       max: 10,
+//     }),
+//   ],
+//   async (req, res) => {
+//     try {
+//       const { userName, emailAddress, phoneNumber } = req.body;
+
+//       // Check for validation errors
+//       const errors = validationResult(req);
+//       if (!errors.isEmpty()) {
+//         return res.status(400).json({ errors: errors.array() });
+//       }
+
+//       // File details
+//       let fileId = null;
+//       if (req.file) {
+//         const { originalname, buffer } = req.file;
+
+//         // Save file to GridFS and get the ObjectId
+//         fileId = await storeFile(originalname, createReadStream(buffer));
+//       }
+
+//       // Create and save note
+//       const note = new Note({
+//         userName,
+//         emailAddress,
+//         phoneNumber,
+//         fileId: fileId, // Set the fileId in the note
+//         user: req.user.id,
+//       });
+
+//       const savedNote = await note.save();
+//       res.json(savedNote);
+//     } catch (error) {
+//       console.error(error.message);
+//       res.status(500).send("Internal Server Error");
+//     }
+//   }
+// );
 
 //---------ROUTE 3 :----------FOR UPDATING A EXISTING NOTES USING 'PUT METHOD' "/api/notes/updatenote". login requires
 router.put("/updatenote/:id", fetchuser, async (req, res) => {

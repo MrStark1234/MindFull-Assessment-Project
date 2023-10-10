@@ -27,7 +27,6 @@ const NoteState = (props) => {
       setNotes(json);
     } catch (error) {
       console.error("Error fetching notes:", error.message);
-      // Handle the error appropriately (e.g., show an error message to the user)
     }
   };
 
@@ -47,11 +46,11 @@ const NoteState = (props) => {
       }
 
       const json = await response.json();
-      console.log("API Response:", json); // Log the response
+      console.log("API Response:", json);
       return json;
     } catch (error) {
       console.error("Error fetching search results:", error.message);
-      // Handle the error appropriately
+
       throw error;
     }
   };

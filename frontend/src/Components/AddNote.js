@@ -41,7 +41,6 @@ const AddNote = (props) => {
       <div style={{ float: "right" }}>
         <input
           style={{ width: "50%", borderRadius: "6px", borderColor: "cornsilk" }}
-          // className="form-control"
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -101,6 +100,20 @@ const AddNote = (props) => {
               placeholder="Enter 10-digit Phone number"
             />
           </div>
+          {/* <div className="mb-3">
+            <label htmlFor="image" className="form-label">
+              Upload Image
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              id="image"
+              name="image"
+              accept="image/*"
+              onChange={handleImageChange}
+              style={{ width: "30%" }}
+            />
+          </div> */}
 
           <button
             disabled={note.userName.length < 5 || note.emailAddress.length < 5}
@@ -111,21 +124,7 @@ const AddNote = (props) => {
             Add User
           </button>
         </form>
-        {/* Display search results */}
-        {/* {searchResults && (
-          <div>
-            <h3>Search Result</h3>
-            <p>
-              <b>User Name:</b> {searchResults.userName}
-            </p>
-            <p>
-              <b>Email Address:</b> {searchResults.emailAddress}
-            </p>
-            <p>
-              <b>Phone Number:</b> {searchResults.phoneNumber}
-            </p>
-          </div>
-        )} */}
+
         {searchResults.map((e, ind) => (
           <ul key={ind}>
             <li>
